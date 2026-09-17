@@ -1,4 +1,4 @@
-# Loop Lete — versión de publicación
+# Loop Lete
 
 © 2026 Lete. Todos los derechos reservados.
 
@@ -19,4 +19,4 @@ npm run build:public
 
 El resultado queda en `dist/`.
 
-> Esta versión no está pensada para editar cómodamente.
+> Esta versión no está pensada para editar cómodamente. Ya te estoy mirando rata
