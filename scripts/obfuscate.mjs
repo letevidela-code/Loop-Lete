@@ -4,8 +4,7 @@ import JavaScriptObfuscator from 'javascript-obfuscator'
 
 const root = path.resolve('dist')
 
-// Configuración deliberadamente conservadora: ofusca el bundle sin aplicar
-// transformaciones agresivas que pueden romper React o eventos del navegador.
+// Configuración conservadora para no romper React ni los eventos del navegador.
 const options = {
   compact: true,
   identifierNamesGenerator: 'hexadecimal',
@@ -39,3 +38,16 @@ function walk(dir) {
 }
 
 walk(root)
+
+// Vite calcula el nombre hash antes de la ofuscación. Agregamos una versión
+// al script final para evitar que el navegador reutilice un JS viejo en caché.
+const htmlPath = path.join(root, 'index.html')
+if (fs.existsSync(htmlPath)) {
+  const version = Date.now().toString(36)
+  const html = fs.readFileSync(htmlPath, 'utf8').replace(
+    /(<script[^>]+src=["'][^"']+\.js)(["'])/g,
+    `$1?v=${version}$2`
+  )
+  fs.writeFileSync(htmlPath, html)
+  console.log(`cache-bust: ${version}`)
+}
