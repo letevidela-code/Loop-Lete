@@ -17,6 +17,7 @@
     "react-icons": "latest"
   },
   "devDependencies": {
+    "esbuild": "latest",
     "javascript-obfuscator": "latest"
   }
 }
