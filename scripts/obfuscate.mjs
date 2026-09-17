@@ -3,24 +3,26 @@ import path from 'node:path'
 import JavaScriptObfuscator from 'javascript-obfuscator'
 
 const root = path.resolve('dist')
+
+// Configuración deliberadamente conservadora: ofusca el bundle sin aplicar
+// transformaciones agresivas que pueden romper React o eventos del navegador.
 const options = {
   compact: true,
   identifierNamesGenerator: 'hexadecimal',
   renameGlobals: false,
   stringArray: true,
   stringArrayEncoding: ['base64'],
-  stringArrayThreshold: 0.8,
+  stringArrayThreshold: 0.75,
   rotateStringArray: true,
   shuffleStringArray: true,
-  splitStrings: true,
-  splitStringsChunkLength: 8,
-  transformObjectKeys: true,
-  numbersToExpressions: true,
-  simplify: true,
-  unicodeEscapeSequence: false,
+  transformObjectKeys: false,
+  splitStrings: false,
+  numbersToExpressions: false,
+  simplify: false,
   selfDefending: false,
   controlFlowFlattening: false,
-  deadCodeInjection: false
+  deadCodeInjection: false,
+  sourceMap: false
 }
 
 function walk(dir) {
@@ -31,7 +33,7 @@ function walk(dir) {
       const source = fs.readFileSync(full, 'utf8')
       const output = JavaScriptObfuscator.obfuscate(source, options).getObfuscatedCode()
       fs.writeFileSync(full, output)
-      console.log(`ofuscado: ${path.relative(process.cwd(), full)}`)
+      console.log(`ofuscado seguro: ${path.relative(process.cwd(), full)}`)
     }
   }
 }
