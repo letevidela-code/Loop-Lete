@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:public": "vite build",
+    "build:public": "node scripts/extract-profile.mjs && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
