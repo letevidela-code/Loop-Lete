@@ -1,0 +1,6 @@
+Loop Lete
+© 2026 Lete. Todos los derechos reservados.
+
+Este repositorio contiene la versión destinada a publicación.
+La disponibilidad pública del código no implica autorización para copiar,
+redistribuir, vender o reutilizar el proyecto sin permiso del autor.
