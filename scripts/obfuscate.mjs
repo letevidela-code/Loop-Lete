@@ -4,7 +4,6 @@ import JavaScriptObfuscator from 'javascript-obfuscator'
 
 const root = path.resolve('dist')
 
-// Configuración conservadora para no romper React ni los eventos del navegador.
 const options = {
   compact: true,
   identifierNamesGenerator: 'hexadecimal',
@@ -39,8 +38,7 @@ function walk(dir) {
 
 walk(root)
 
-// Vite calcula el nombre hash antes de la ofuscación. Agregamos una versión
-// al script final para evitar que el navegador reutilice un JS viejo en caché.
+
 const htmlPath = path.join(root, 'index.html')
 if (fs.existsSync(htmlPath)) {
   const version = Date.now().toString(36)
