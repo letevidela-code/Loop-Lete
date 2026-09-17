@@ -17,7 +17,6 @@ npm run dev
 npm run build:public
 ```
 
-El resultado queda en `dist/`. El JavaScript de producción se compila,
-minifica y ofusca, y no se generan source maps.
+El resultado queda en `dist/`.
 
 > Esta versión no está pensada para editar cómodamente.
